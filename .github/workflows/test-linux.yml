@@ -45,5 +45,10 @@ jobs:
         run: npx envinfo
       - name: Build
         run: make build-ci -j2 V=1 CONFIG_FLAGS="--error-on-warn"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce  # v3.1.2
+        with:
+          name: build-linux
+          path: out/Release
       - name: Test
         run: make run-ci -j2 V=1 TEST_CI_ARGS="-p actions --measure-flakiness 9"
